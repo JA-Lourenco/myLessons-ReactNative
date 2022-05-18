@@ -13,5 +13,10 @@ export default {
         purple: '#5429CC'
 
         /* Alternatives: #F5F5F5 #b5d3f0 #90B6DB #486493 */
+    },
+
+    fonts: {
+        regular: 'Ubuntu_400Regular',
+        bold: 'Ubuntu_700Bold'
     }
 }
