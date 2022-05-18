@@ -13,6 +13,8 @@ import {
     Details,
     Observation,
     SelectDays,
+    Week,
+    Weekend,
     ButtonArea
 } from './styles';
 
@@ -31,8 +33,7 @@ export function UpdateLesson(){
                 <Title>Português</Title>
             </Header>
 
-            <Details>            
-                
+            <Details>           
                 <Observation>
                     Observação:{'\n'}
                     Realizar estudo diário
@@ -40,94 +41,100 @@ export function UpdateLesson(){
                 
 
                 <SelectDays>
-                    <BouncyCheckbox
-                        size={24}
-                        text='Segunda-feira'
-                        textStyle={{ 
-                            color: theme.colors.white, 
-                            fontFamily: theme.fonts.regular,
-                            textDecorationLine: 'none'
-                        }}
-                        style={{ paddingVertical: 10, width: 200 }}
-                        fillColor={theme.colors.pink}
-                        unfillColor={theme.colors.black}
-                    />
-                    
-                    <BouncyCheckbox
-                        size={24}
-                        text='Terça-feira'
-                        textStyle={{ 
-                            color: theme.colors.white, 
-                            fontFamily: theme.fonts.regular,
-                            textDecorationLine: 'none'
-                        }}
-                        style={{ paddingVertical: 10, width: 200 }}
-                        fillColor={theme.colors.pink}
-                        unfillColor={theme.colors.black}
-                    />
-                    <BouncyCheckbox
-                        size={24}
-                        text='Quarta-feira'
-                        textStyle={{ 
-                            color: theme.colors.white, 
-                            fontFamily: theme.fonts.regular,
-                            textDecorationLine: 'none'
-                        }}
-                        style={{ paddingVertical: 10, width: 200 }}
-                        fillColor={theme.colors.pink}
-                        unfillColor={theme.colors.black}
-                    />
+                    <Week>
+                        <BouncyCheckbox
+                            size={24}
+                            text='Segunda-feira'
+                            textStyle={{ 
+                                color: theme.colors.white, 
+                                fontFamily: theme.fonts.regular,
+                                textDecorationLine: 'none'
+                            }}
+                            style={{ paddingVertical: 10, width: 200 }}
+                            fillColor={theme.colors.pink}
+                            unfillColor={theme.colors.black}
+                        />
+                        
+                        <BouncyCheckbox
+                            size={24}
+                            text='Terça-feira'
+                            textStyle={{ 
+                                color: theme.colors.white, 
+                                fontFamily: theme.fonts.regular,
+                                textDecorationLine: 'none'
+                            }}
+                            style={{ paddingVertical: 10, width: 200 }}
+                            fillColor={theme.colors.pink}
+                            unfillColor={theme.colors.black}
+                        />
 
-                    <BouncyCheckbox
-                        size={24}
-                        text='Quinta-feira'
-                        textStyle={{ 
-                            color: theme.colors.white, 
-                            fontFamily: theme.fonts.regular,
-                            textDecorationLine: 'none'
-                        }}
-                        style={{ paddingVertical: 10, width: 200 }}
-                        fillColor={theme.colors.pink}
-                        unfillColor={theme.colors.black}
-                    />
-                    <BouncyCheckbox
-                        size={24}
-                        text='Sexta-feira'
-                        textStyle={{ 
-                            color: theme.colors.white, 
-                            fontFamily: theme.fonts.regular,
-                            textDecorationLine: 'none'
-                        }}
-                        style={{ paddingVertical: 10, width: 200 }}
-                        fillColor={theme.colors.pink}
-                        unfillColor={theme.colors.black}
-                    />
+                        <BouncyCheckbox
+                            size={24}
+                            text='Quarta-feira'
+                            textStyle={{ 
+                                color: theme.colors.white, 
+                                fontFamily: theme.fonts.regular,
+                                textDecorationLine: 'none'
+                            }}
+                            style={{ paddingVertical: 10, width: 200 }}
+                            fillColor={theme.colors.pink}
+                            unfillColor={theme.colors.black}
+                        />
 
-                    <BouncyCheckbox
-                        size={24}
-                        text='Sábado'
-                        textStyle={{ 
-                            color: theme.colors.white, 
-                            fontFamily: theme.fonts.regular,
-                            textDecorationLine: 'none'
-                        }}
-                        style={{ paddingVertical: 10, width: 200 }}
-                        fillColor={theme.colors.pink}
-                        unfillColor={theme.colors.black}
-                    />
+                        <BouncyCheckbox
+                            size={24}
+                            text='Quinta-feira'
+                            textStyle={{ 
+                                color: theme.colors.white, 
+                                fontFamily: theme.fonts.regular,
+                                textDecorationLine: 'none'
+                            }}
+                            style={{ paddingVertical: 10, width: 200 }}
+                            fillColor={theme.colors.pink}
+                            unfillColor={theme.colors.black}
+                        />
+                    </Week>
 
-                    <BouncyCheckbox
-                        size={24}
-                        text='Domingo'
-                        textStyle={{ 
-                            color: theme.colors.white, 
-                            fontFamily: theme.fonts.regular,
-                            textDecorationLine: 'none'
-                        }}
-                        style={{ paddingVertical: 10, width: 200 }}
-                        fillColor={theme.colors.pink}
-                        unfillColor={theme.colors.black}
-                    />
+                    <Weekend>
+                        <BouncyCheckbox
+                            size={24}
+                            text='Sexta-feira'
+                            textStyle={{ 
+                                color: theme.colors.white, 
+                                fontFamily: theme.fonts.regular,
+                                textDecorationLine: 'none'
+                            }}
+                            style={{ paddingVertical: 10 }}
+                            fillColor={theme.colors.pink}
+                            unfillColor={theme.colors.black}
+                        />
+
+                        <BouncyCheckbox
+                            size={24}
+                            text='Sábado'
+                            textStyle={{ 
+                                color: theme.colors.white, 
+                                fontFamily: theme.fonts.regular,
+                                textDecorationLine: 'none'
+                            }}
+                            style={{ paddingVertical: 10 }}
+                            fillColor={theme.colors.pink}
+                            unfillColor={theme.colors.black}
+                        />
+
+                        <BouncyCheckbox
+                            size={24}
+                            text='Domingo'
+                            textStyle={{ 
+                                color: theme.colors.white, 
+                                fontFamily: theme.fonts.regular,
+                                textDecorationLine: 'none'
+                            }}
+                            style={{ paddingVertical: 10 }}
+                            fillColor={theme.colors.pink}
+                            unfillColor={theme.colors.black}
+                        />
+                    </Weekend>
                 </SelectDays>
             </Details>
 
