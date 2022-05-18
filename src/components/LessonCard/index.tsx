@@ -1,26 +1,35 @@
 import React from 'react';
+import { EditButton } from '../EditButton';
 
 import {
     Container,
+    Details,
     LessonName,
     Days,
-    Observation
+    Observation,
+    ButtonArea
 } from './styles';
 
 export function LessonCard(){
     return (
         <Container>
-            <LessonName>
-                Português
-            </LessonName>
+            <Details>
+                <LessonName>
+                    Português
+                </LessonName>
 
-            <Days>
-                Quarta, Quinta
-            </Days>
+                <Days>
+                    Quarta, Quinta
+                </Days>
 
-            <Observation>
-                Realizar estudo diário.
-            </Observation>
+                <Observation>
+                    Realizar estudo diário.
+                </Observation>
+            </Details>
+
+            <ButtonArea>
+                <EditButton />
+            </ButtonArea>
         </Container>
     )
 }
