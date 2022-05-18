@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { Lessons } from './src/screens/Lessons';
+// import { Lessons } from './src/screens/Lessons';
+import { UpdateLesson } from './src/screens/UpdateLesson';
 
 import theme from './src/global/styles/theme';
 import { ThemeProvider } from 'styled-components';
@@ -22,7 +23,8 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Lessons />
+      {/* <Lessons /> */}
+      <UpdateLesson />
     </ThemeProvider>
   );
 }
