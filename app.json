@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "myLessons-RN",
+    "slug": "myLessons-RN",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
