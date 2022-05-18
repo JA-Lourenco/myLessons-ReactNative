@@ -5,21 +5,28 @@ import { UpdateLesson } from './src/screens/UpdateLesson';
 
 import theme from './src/global/styles/theme';
 import { ThemeProvider } from 'styled-components';
+import * as SplashScreen from 'expo-splash-screen';
 
-// import {
-//   useFonts,
-//   Ubuntu_400Regular,
-//   Ubuntu_700Bold
-// } from '@expo-google-fonts/ubuntu'
+import {
+  useFonts,
+  Ubuntu_400Regular,
+  Ubuntu_700Bold
+} from '@expo-google-fonts/ubuntu'
 
-
-// https://docs.expo.dev/versions/latest/sdk/splash-screen/
 
 export default function App() {
-  // const [fontsLoaded] = useFonts({
-  //   Ubuntu_400Regular,
-  //   Ubuntu_700Bold
-  // })
+  SplashScreen.preventAutoHideAsync();
+  
+  const [fontsLoaded] = useFonts({
+    Ubuntu_400Regular,
+    Ubuntu_700Bold,
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
+  SplashScreen.hideAsync();
 
   return (
     <ThemeProvider theme={theme}>
