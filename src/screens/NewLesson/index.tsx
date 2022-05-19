@@ -1,7 +1,11 @@
 import React from 'react';
 
 import { Button } from '../../components/Button';
+import { InputForm } from '../../components/Form/InputForm';
 
+import { LessonDTO } from '../../dtos/LessonDTO'
+
+import { useForm } from 'react-hook-form';
 import { StatusBar } from 'react-native';
 import { useTheme } from 'styled-components';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
@@ -18,10 +22,31 @@ import {
     ButtonArea
             
 } from './styles';
-import { Input } from '../../components/Form/Input';
 
 export function NewLesson(){
     const theme = useTheme()
+
+    const {
+        control,
+        handleSubmit
+    } = useForm()
+
+    function handleSubmitLesson(form: Partial<LessonDTO>) {
+        const data = {
+            id: Math.random() * 100,
+            lesson: form.lesson,
+            obs: form.obs,
+            // monday: form.monday,
+            // tuesday: form.tuesday,
+            // wednesday: form.wednesday,
+            // thursday: form.thursday,
+            // friday: form.friday,
+            // saturday: form.saturday,
+            // sunday: form.sunday
+        }
+
+        console.log(data)
+    }
 
     return (
         <Container>
@@ -37,14 +62,17 @@ export function NewLesson(){
 
             <Form>
                 <Inputs>
-                    <Input 
-                        
+                    <InputForm
+                        name='lesson'
+                        control={control}
                         placeholder='Nome da Matéria' 
                         placeholderTextColor={theme.colors.gray} 
                         maxLength={100}
                     />
 
-                    <Input 
+                    <InputForm 
+                        name='obs'
+                        control={control}
                         placeholder='Observação' 
                         placeholderTextColor={theme.colors.gray} 
                         multiline={true}
@@ -161,12 +189,10 @@ export function NewLesson(){
                     <Button 
                         title='Adicionar' 
                         color={theme.colors.pink} 
-                        onPress={() => {}} 
+                        onPress={handleSubmit(handleSubmitLesson)} 
                     />
                 </ButtonArea>
             </Form>
-
-
         </Container>
     )
 }
