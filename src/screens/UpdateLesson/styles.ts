@@ -38,7 +38,7 @@ export const Observation = styled.Text`
 
 export const SelectDays = styled.View`
     margin-top: 35px;
-    padding: 0 30px 20px;
+    padding: 0 30px 30px;
     flex-direction: row;
     justify-content: space-between;
 `
@@ -46,10 +46,47 @@ export const SelectDays = styled.View`
 export const Week = styled.View`
 
 `
+
 export const Weekend = styled.View`
 
 `
 
 export const ButtonArea = styled.View`
-    
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 30px;
+`
+
+export const ModalContainer = styled.View`
+    width: 100%;
+    height: 250px;
+    background-color: ${({ theme }) => theme.colors.nightBlack};
+    flex-direction: column;
+    justify-content: space-around;
+    border-radius: 5px;
+`
+
+export const ModalHeader = styled.View`
+    padding: 0 30px;
+`
+
+export const ModalTitle = styled.Text`
+    color: ${({ theme }) => theme.colors.white};
+    font-family: ${({ theme }) => theme.fonts.bold};
+    font-size: ${RFValue(16)}px;
+`
+
+export const ModalQuestion = styled.Text`
+    color: ${({ theme }) => theme.colors.white};
+    font-family: ${({ theme }) => theme.fonts.regular};
+    font-size: ${RFValue(16)}px;
+    margin-top: 20px;
+`
+
+export const ModalButtonArea = styled.View`
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 30px;
 `

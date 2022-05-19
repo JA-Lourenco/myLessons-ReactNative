@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
+
+import { Button } from '../../components/Button';
 
 import { StatusBar } from 'react-native';
+import Modal from "react-native-modal";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
-import { RFValue } from 'react-native-responsive-fontsize';
 
 import { useTheme } from 'styled-components';
 
@@ -15,10 +17,17 @@ import {
     SelectDays,
     Week,
     Weekend,
-    ButtonArea
+    ButtonArea,
+    ModalContainer,
+    ModalHeader,
+    ModalTitle,
+    ModalQuestion,
+    ModalButtonArea
 } from './styles';
 
 export function UpdateLesson(){
+    const [modalIsOpen, setModalIsOpen] = useState(false)
+
     const theme = useTheme()
 
     return (
@@ -39,7 +48,6 @@ export function UpdateLesson(){
                     Realizar estudo diário
                 </Observation>
                 
-
                 <SelectDays>
                     <Week>
                         <BouncyCheckbox
@@ -139,9 +147,51 @@ export function UpdateLesson(){
             </Details>
 
             <ButtonArea>
+                <Button 
+                    title='Editar' 
+                    color={theme.colors.pink} 
+                    onPress={() => {}} 
+                />
 
+                <Button 
+                    title='Remover' 
+                    color={theme.colors.purple} 
+                    onPress={() => setModalIsOpen(true)} 
+                />
             </ButtonArea>
 
+            <Modal
+                isVisible={modalIsOpen}
+                style={{ 
+                    backgroundColor: 'rgba(0,0,0,0.1)'
+                 }}
+            >   
+                <ModalContainer>
+                    <ModalHeader>
+                        <ModalTitle>
+                            Atenção
+                        </ModalTitle>
+
+                        <ModalQuestion>
+                            Confirma a remoção da matéria?
+                        </ModalQuestion>
+                    </ModalHeader>
+                
+                    <ModalButtonArea>                    
+                        <Button 
+                            title='Cancelar' 
+                            color={theme.colors.pink} 
+                            onPress={() => setModalIsOpen(false)} 
+                        />
+
+                        <Button 
+                            title='Confirmar' 
+                            color={theme.colors.purple} 
+                            onPress={() => {}} 
+                        />
+                    </ModalButtonArea>
+                </ModalContainer>
+            </Modal>               
         </Container>
     )
 }

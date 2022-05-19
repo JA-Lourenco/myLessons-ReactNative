@@ -3,9 +3,9 @@ import React from 'react';
 // import { Lessons } from './src/screens/Lessons';
 import { UpdateLesson } from './src/screens/UpdateLesson';
 
+import * as SplashScreen from 'expo-splash-screen';
 import theme from './src/global/styles/theme';
 import { ThemeProvider } from 'styled-components';
-import * as SplashScreen from 'expo-splash-screen';
 
 import {
   useFonts,
@@ -33,5 +33,6 @@ export default function App() {
       {/* <Lessons /> */}
       <UpdateLesson />
     </ThemeProvider>
+    
   );
 }
