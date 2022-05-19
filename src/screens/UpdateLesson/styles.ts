@@ -74,13 +74,13 @@ export const ModalHeader = styled.View`
 export const ModalTitle = styled.Text`
     color: ${({ theme }) => theme.colors.white};
     font-family: ${({ theme }) => theme.fonts.bold};
-    font-size: ${RFValue(16)}px;
+    font-size: ${RFValue(18)}px;
 `
 
 export const ModalQuestion = styled.Text`
     color: ${({ theme }) => theme.colors.white};
     font-family: ${({ theme }) => theme.fonts.regular};
-    font-size: ${RFValue(16)}px;
+    font-size: ${RFValue(18)}px;
     margin-top: 20px;
 `
 

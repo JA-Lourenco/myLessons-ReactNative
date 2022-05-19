@@ -58,7 +58,8 @@ export function UpdateLesson(){
                                 fontFamily: theme.fonts.regular,
                                 textDecorationLine: 'none'
                             }}
-                            style={{ paddingVertical: 10, width: 200 }}
+                            style={{ paddingVertical: 10 }}
+                            iconStyle={{ borderRadius: 3 }}
                             fillColor={theme.colors.pink}
                             unfillColor={theme.colors.black}
                         />
@@ -71,7 +72,8 @@ export function UpdateLesson(){
                                 fontFamily: theme.fonts.regular,
                                 textDecorationLine: 'none'
                             }}
-                            style={{ paddingVertical: 10, width: 200 }}
+                            style={{ paddingVertical: 10 }}
+                            iconStyle={{ borderRadius: 3 }}
                             fillColor={theme.colors.pink}
                             unfillColor={theme.colors.black}
                         />
@@ -84,7 +86,8 @@ export function UpdateLesson(){
                                 fontFamily: theme.fonts.regular,
                                 textDecorationLine: 'none'
                             }}
-                            style={{ paddingVertical: 10, width: 200 }}
+                            style={{ paddingVertical: 10 }}
+                            iconStyle={{ borderRadius: 3 }}
                             fillColor={theme.colors.pink}
                             unfillColor={theme.colors.black}
                         />
@@ -97,7 +100,8 @@ export function UpdateLesson(){
                                 fontFamily: theme.fonts.regular,
                                 textDecorationLine: 'none'
                             }}
-                            style={{ paddingVertical: 10, width: 200 }}
+                            style={{ paddingVertical: 10 }}
+                            iconStyle={{ borderRadius: 3 }}
                             fillColor={theme.colors.pink}
                             unfillColor={theme.colors.black}
                         />
@@ -113,6 +117,7 @@ export function UpdateLesson(){
                                 textDecorationLine: 'none'
                             }}
                             style={{ paddingVertical: 10 }}
+                            iconStyle={{ borderRadius: 3 }}
                             fillColor={theme.colors.pink}
                             unfillColor={theme.colors.black}
                         />
@@ -126,6 +131,7 @@ export function UpdateLesson(){
                                 textDecorationLine: 'none'
                             }}
                             style={{ paddingVertical: 10 }}
+                            iconStyle={{ borderRadius: 3 }}
                             fillColor={theme.colors.pink}
                             unfillColor={theme.colors.black}
                         />
@@ -139,6 +145,7 @@ export function UpdateLesson(){
                                 textDecorationLine: 'none'
                             }}
                             style={{ paddingVertical: 10 }}
+                            iconStyle={{ borderRadius: 3 }}
                             fillColor={theme.colors.pink}
                             unfillColor={theme.colors.black}
                         />
@@ -162,9 +169,11 @@ export function UpdateLesson(){
 
             <Modal
                 isVisible={modalIsOpen}
-                style={{ 
-                    backgroundColor: 'rgba(0,0,0,0.1)'
-                 }}
+                backdropColor={theme.colors.gray}
+                onBackdropPress={() => setModalIsOpen(false)}
+                onBackButtonPress={() => setModalIsOpen(false)} 
+                backdropTransitionInTiming={1000}
+                backdropTransitionOutTiming={400}
             >   
                 <ModalContainer>
                     <ModalHeader>
