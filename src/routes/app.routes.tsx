@@ -19,6 +19,7 @@ function StackRoutes() {
     return (
         <Stack.Navigator
             screenOptions={{ headerShown: false }}
+            initialRouteName='Lessons'
         >
             <Stack.Screen 
                 name='Lessons'
@@ -50,7 +51,8 @@ export function AppRoutes() {
                 tabBarLabelStyle: {
                     fontFamily: theme.fonts.bold,
                     fontSize: RFValue(16)
-                }
+                },
+                unmountOnBlur: true
             }}
         >
             <Tab.Screen 

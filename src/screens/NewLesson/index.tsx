@@ -12,14 +12,13 @@ import {
     Title,
     Form,
     Inputs,
-    LessonNameInput,
-    LessonObsInput,
     SelectDays,
     Week,
     Weekend,
     ButtonArea
             
 } from './styles';
+import { Input } from '../../components/Form/Input';
 
 export function NewLesson(){
     const theme = useTheme()
@@ -38,13 +37,20 @@ export function NewLesson(){
 
             <Form>
                 <Inputs>
-                    <LessonNameInput>
+                    <Input 
+                        
+                        placeholder='Nome da Matéria' 
+                        placeholderTextColor={theme.colors.gray} 
+                        maxLength={100}
+                    />
 
-                    </LessonNameInput>
-
-                    <LessonObsInput multiline={true} numberOfLines={4} maxLength={300}>
-
-                    </LessonObsInput>
+                    <Input 
+                        placeholder='Observação' 
+                        placeholderTextColor={theme.colors.gray} 
+                        multiline={true}
+                        numberOfLines={3}
+                        maxLength={400}
+                    />
                 </Inputs>
 
                 <SelectDays>

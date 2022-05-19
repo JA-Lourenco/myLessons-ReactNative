@@ -34,25 +34,6 @@ export const Inputs = styled.View`
     padding: 10px 30px;
 `
 
-export const LessonNameInput = styled.TextInput`
-    width: 100%;
-    border: 0.5px solid ${({ theme }) => theme.colors.lightGray};
-    color: ${({ theme }) => theme.colors.pink};
-    font-family: ${({ theme }) => theme.fonts.bold};
-    font-size: ${RFValue(14)}px;
-    padding: 5px 8px;
-    margin-bottom: 15px;
-`
-
-export const LessonObsInput = styled.TextInput`
-    width: 100%;
-    border: 0.5px solid ${({ theme }) => theme.colors.lightGray};
-    color: ${({ theme }) => theme.colors.pink};
-    font-family: ${({ theme }) => theme.fonts.bold};
-    font-size: ${RFValue(14)}px;
-    padding: 5px;
-`
-
 export const SelectDays = styled.View`
     margin-top: 35px;
     padding: 0 30px 30px;
