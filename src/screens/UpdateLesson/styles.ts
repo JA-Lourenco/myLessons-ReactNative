@@ -65,6 +65,7 @@ export const ModalContainer = styled.View`
     flex-direction: column;
     justify-content: space-around;
     border-radius: 5px;
+    /* border: 0.5px solid ${({ theme }) => theme.colors.lightGray}; */
 `
 
 export const ModalHeader = styled.View`

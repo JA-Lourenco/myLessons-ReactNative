@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { EditButton } from '../EditButton';
 
 import {
@@ -10,7 +11,12 @@ import {
     ButtonArea
 } from './styles';
 
-export function LessonCard(){
+interface LessonCardProps {
+    onPress: () => void
+}
+
+export function LessonCard({ onPress }: LessonCardProps) {
+
     return (
         <Container>
             <Details>
@@ -28,7 +34,7 @@ export function LessonCard(){
             </Details>
 
             <ButtonArea>
-                <EditButton />
+                <EditButton onPress={onPress}/>
             </ButtonArea>
         </Container>
     )

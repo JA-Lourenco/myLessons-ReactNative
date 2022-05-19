@@ -7,11 +7,15 @@ import {
     Container
 } from './styles';
 
-export function EditButton(){
+interface EditButtonProps {
+    onPress: () => void
+}
+
+export function EditButton({ onPress }: EditButtonProps){
     const theme = useTheme()
 
     return (
-        <Container>
+        <Container onPress={onPress}>
             <FontAwesome 
                 name='edit'
                 size={24}

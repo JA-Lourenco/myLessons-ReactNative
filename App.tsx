@@ -1,7 +1,6 @@
 import React from 'react';
 
-// import { Lessons } from './src/screens/Lessons';
-import { UpdateLesson } from './src/screens/UpdateLesson';
+import { Routes } from './src/routes';
 
 import * as SplashScreen from 'expo-splash-screen';
 import theme from './src/global/styles/theme';
@@ -30,8 +29,7 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      {/* <Lessons /> */}
-      <UpdateLesson />
+      <Routes />
     </ThemeProvider>
     
   );

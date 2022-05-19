@@ -3,6 +3,8 @@ import React from 'react';
 import { StatusBar } from 'react-native';
 import { LessonCard } from '../../components/LessonCard';
 
+import { useNavigation } from '@react-navigation/native';
+
 import {
     Container,
     Header,
@@ -11,7 +13,17 @@ import {
     LessonsList
 } from './styles';
 
+interface NavigationProps {
+    navigate: (screen: string) => void
+}
+
 export function Lessons(){
+    const navigation = useNavigation<NavigationProps>()
+
+    function handleLessonEdit() {
+        navigation.navigate('Update')
+    }
+
     return (
         <Container>
             <StatusBar 
@@ -26,10 +38,7 @@ export function Lessons(){
 
             <List>
                 <LessonsList>
-                    <LessonCard />
-                    <LessonCard />
-                    <LessonCard />
-                    <LessonCard />
+                    <LessonCard onPress={handleLessonEdit} />
                 </LessonsList>
             </List>
 
