@@ -10,7 +10,7 @@ export const Container = styled.View`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    
+    position: relative;
 `;
 
 export const Details = styled.View`
@@ -27,13 +27,17 @@ export const Days = styled.Text`
     font-family: ${({ theme }) => theme.fonts.regular};
     font-size: ${RFValue(14)}px;
     margin-top: 5px;
+    width: 85%;
 `
 
 export const Observation = styled.Text`
     color: ${({ theme }) => theme.colors.white};
     font-family: ${({ theme }) => theme.fonts.regular};
     font-size: ${RFValue(14)}px;
+    margin-top: 5px;
 `
 
 export const ButtonArea = styled.View`
+    position: absolute;
+    right: 25px;
 `

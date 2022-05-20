@@ -78,11 +78,12 @@ export function Lessons(){
 
     }
 
-    const renderItem: ListRenderItem<LessonDTO> = ({ item }) => {
-        return (
-            <LessonCard { ...item} />
-        )
-    }
+    // ALTERNATIVA PARA A PROP RENDERITEM DA FLATLIST
+    // const renderItem: ListRenderItem<LessonDTO> = ({ item }) => {
+    //     return (
+    //         <LessonCard { ...item} />
+    //     )
+    // }
 
     useEffect(() => {
         handleGetLessons()
@@ -103,7 +104,8 @@ export function Lessons(){
             <LessonsList
                 data={lesson}
                 keyExtractor={(item: any) => item.id}
-                renderItem={renderItem}
+                renderItem={({item}: any) => <LessonCard { ...item} />}
+                showsVerticalScrollIndicator={false}
             />
         </Container>
     )

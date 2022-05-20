@@ -8,7 +8,8 @@ import { LessonDTO } from '../../dtos/LessonDTO'
 
 import { StatusBar, 
     TouchableWithoutFeedback, 
-    Keyboard
+    Keyboard,
+    Alert
 } from 'react-native';
 import { useForm } from 'react-hook-form';
 import { useTheme } from 'styled-components';
@@ -113,7 +114,7 @@ export function NewLesson(){
             console.log(data)
 
             await api.post('/Lessons', data)
-
+            Alert.alert('Matéria adicionada com sucesso!')
             navigation.navigate('Matérias')
 
         } catch (error) {
