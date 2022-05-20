@@ -1,4 +1,4 @@
-## Intruções para exeutar o projeto
+## Intruções para executar o projeto
 
 1 - Abra seu terminal e execute o comando e copie o número de Ip da máquina (ipv4):
 
