@@ -112,7 +112,7 @@ export function NewLesson(){
             }
             console.log(data)
 
-            const response = await api.post('/Lessons', data)
+            await api.post('/Lessons', data)
 
             navigation.navigate('Matérias')
 
@@ -169,7 +169,7 @@ export function NewLesson(){
                                             fontFamily: theme.fonts.regular,
                                             textDecorationLine: 'none'
                                         }}
-                                        style={{ paddingVertical: 10 }}
+                                        style={{ width: 200, paddingVertical: 10 }}
                                         iconStyle={{ borderRadius: 3 }}
                                         fillColor={theme.colors.pink}
                                         unfillColor={theme.colors.black}

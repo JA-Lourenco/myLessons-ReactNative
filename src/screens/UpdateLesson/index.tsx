@@ -5,13 +5,13 @@ import { Button } from '../../components/Button';
 import api from '../../services/api';
 
 import { LessonDTO } from '../../dtos/LessonDTO';
-import { StatusBar } from 'react-native';
+import { StatusBar, Alert } from 'react-native';
 import Modal from "react-native-modal";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 
 import { useTheme } from 'styled-components';
-import { SelectedDaysProps } from '../NewLesson';
 import { useRoute } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 
 import {
     Container,
@@ -65,17 +65,21 @@ const DAYS = [
         checked: false
     }
 ]
-
 interface Params {
     id: string
 }
 
+interface NavigationProps {
+    push: (screen: string) => void
+}
+
 export function UpdateLesson(){
     const [modalIsOpen, setModalIsOpen] = useState(false)
-    const [days, setDays] = useState<SelectedDaysProps[]>(DAYS)
     const [lesson, setLesson] = useState<LessonDTO>({} as LessonDTO)
 
     const theme = useTheme()
+
+    const navigation = useNavigation<NavigationProps>()
 
     const route = useRoute()
     const { id } = route.params as Params
@@ -98,7 +102,19 @@ export function UpdateLesson(){
             setLesson({...response.data, days: temp})
 
         } catch (error) {
-            console.log('Screen: Lessons\nFunction: handleGetLesson\nerror:', error)
+            console.log('Screen: UpdateLessons\nFunction: handleGetLesson\nerror:', error)
+        } 
+    }
+
+    async function handleDeleteLesson() {
+        try {
+            await api.delete(`/Lessons/${id}`).then(() => setModalIsOpen(false))
+            
+            Alert.alert('Remoção realizada com sucesso!')
+            navigation.push('Lessons')
+
+        } catch (error) {
+            console.log('Screen: UpdateLessons\nFunction: handleDeleteLesson\nerror:', error)
         } 
     }
 
@@ -125,7 +141,7 @@ export function UpdateLesson(){
                 
                 <SelectDays>
                     {
-                        lesson.days?.map((day, index) => 
+                        lesson.days?.map((day) => 
                             <BouncyCheckbox
                                 key={day.id}
                                 size={24}
@@ -190,7 +206,7 @@ export function UpdateLesson(){
                         <Button 
                             title='Confirmar' 
                             color={theme.colors.purple} 
-                            onPress={() => {}} 
+                            onPress={handleDeleteLesson} 
                         />
                     </ModalButtonArea>
                 </ModalContainer>

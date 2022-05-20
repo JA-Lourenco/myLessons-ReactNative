@@ -11,6 +11,7 @@ import { useTheme } from 'styled-components'
 import { Platform } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import { NavigationContainer } from '@react-navigation/native';
 
 const Stack = createNativeStackNavigator()
 const Tab = createBottomTabNavigator()
@@ -33,7 +34,7 @@ function StackRoutes() {
     )
 }
 
-export function AppRoutes() {
+function TabRoutes() {
     const theme = useTheme()
 
     return (
@@ -83,5 +84,13 @@ export function AppRoutes() {
                 }}
             />
         </Tab.Navigator>
+    )
+}
+
+export function AppRoutes() {
+    return(
+        
+        <TabRoutes />
+        
     )
 }
