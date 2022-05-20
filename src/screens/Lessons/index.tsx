@@ -10,6 +10,7 @@ import {
     Container,
     Header,
     Title,
+    TotalLessons,
     LessonsList
 } from './styles';
 
@@ -99,6 +100,8 @@ export function Lessons(){
 
             <Header>
                 <Title>Matérias</Title>
+
+                <TotalLessons>Total de {lesson.length} matérias</TotalLessons>
             </Header>
 
             <LessonsList
