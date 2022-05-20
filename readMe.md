@@ -10,7 +10,7 @@
 
 3 - Execute o JSON Server 
 
-[Acesse aqui]()
+[Acesse aqui](https://github.com/JA-Lourenco/jsonServer-MyLessons)
 
 4 - Execute os comandos no terminal do projeto em sequência:
 
