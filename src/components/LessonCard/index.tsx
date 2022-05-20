@@ -2,6 +2,10 @@ import React from 'react';
 
 import { EditButton } from '../EditButton';
 
+import { LessonDTO } from '../../dtos/LessonDTO';
+
+import { useNavigation } from '@react-navigation/native';
+
 import {
     Container,
     Details,
@@ -11,30 +15,42 @@ import {
     ButtonArea
 } from './styles';
 
-interface LessonCardProps {
-    onPress: () => void
-}
+// interface NavigationProps {
+//     navigate: (screen: string) => void
+// }
 
-export function LessonCard({ onPress }: LessonCardProps) {
+export function LessonCard({  
+    id,
+    lesson,
+    obs,
+    days
+}: LessonDTO) {
+    const navigation = useNavigation()
+
+    const weekDays = days.filter((item) => item.checked)
+
+    function handleLessonEdit() {
+        navigation.navigate('Update' as never, {id} as never)
+    }
 
     return (
         <Container>
             <Details>
-                <LessonName>
-                    Português
-                </LessonName>
+                <LessonName>{lesson}</LessonName>
 
                 <Days>
-                    Quarta, Quinta
+                    {
+                        weekDays.map(day => day.name).join(', ')
+                    }
                 </Days>
 
                 <Observation>
-                    Realizar estudo diário.
+                    {obs}
                 </Observation>
             </Details>
 
             <ButtonArea>
-                <EditButton onPress={onPress}/>
+                <EditButton onPress={handleLessonEdit}/>
             </ButtonArea>
         </Container>
     )

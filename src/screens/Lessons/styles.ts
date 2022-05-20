@@ -23,8 +23,5 @@ export const Title = styled.Text`
     font-size: ${RFValue(26)}px;
 `
 
-export const List = styled.View`
-`
-
-export const LessonsList = styled.View`
+export const LessonsList = styled.FlatList`
 `

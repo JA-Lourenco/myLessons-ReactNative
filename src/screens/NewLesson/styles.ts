@@ -35,24 +35,18 @@ export const Inputs = styled.View`
 `
 
 export const SelectDays = styled.View`
-    margin-top: 35px;
+    margin-top: 20px;
     padding: 0 30px 30px;
-    flex-direction: row;
     justify-content: space-between;
     border-bottom-width: 1px;
     border-bottom-color: ${({ theme }) => theme.colors.lightGray};
 `
 
-export const Week = styled.View`
-
-`
-
-export const Weekend = styled.View`
-
-`
-
 export const ButtonArea = styled.View`
-    justify-content: flex-end;
-    align-items: center;
-    margin: 30px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    /* justify-content: flex-end;
+    align-items: center; */
+    margin: 20px 0;
 `

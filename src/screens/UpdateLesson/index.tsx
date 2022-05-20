@@ -1,12 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Button } from '../../components/Button';
 
+import api from '../../services/api';
+
+import { LessonDTO } from '../../dtos/LessonDTO';
 import { StatusBar } from 'react-native';
 import Modal from "react-native-modal";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 
 import { useTheme } from 'styled-components';
+import { SelectedDaysProps } from '../NewLesson';
+import { useRoute } from '@react-navigation/native';
 
 import {
     Container,
@@ -15,8 +20,6 @@ import {
     Details,
     Observation,
     SelectDays,
-    Week,
-    Weekend,
     ButtonArea,
     ModalContainer,
     ModalHeader,
@@ -25,10 +28,83 @@ import {
     ModalButtonArea
 } from './styles';
 
+const DAYS = [
+    {
+        id: 0,
+        name: 'Segunda-feira',
+        checked: false
+    },
+    {
+        id: 1,
+        name: 'Terça-feira',
+        checked: false
+    },
+    {
+        id: 2,
+        name: 'Quarta-feira',
+        checked: false
+    },
+    {
+        id: 3,
+        name: 'Quinta-feira',
+        checked: false
+    },
+    {
+        id: 4,
+        name: 'Sexta-feira',
+        checked: false
+    },
+    {
+        id: 5,
+        name: 'Sábado',
+        checked: false
+    },
+    {
+        id: 6,
+        name: 'Domingo',
+        checked: false
+    }
+]
+
+interface Params {
+    id: string
+}
+
 export function UpdateLesson(){
     const [modalIsOpen, setModalIsOpen] = useState(false)
+    const [days, setDays] = useState<SelectedDaysProps[]>(DAYS)
+    const [lesson, setLesson] = useState<LessonDTO>({} as LessonDTO)
 
     const theme = useTheme()
+
+    const route = useRoute()
+    const { id } = route.params as Params
+
+    console.log(id)
+
+    async function handleGetLesson() {
+        try {
+            const response = await api.get(`/Lessons/${id}`)
+            
+            let temp = []
+            temp.push({...DAYS[0], checked: response.data.monday === 'S' ? true : false})
+            temp.push({...DAYS[1], checked: response.data.tuesday === 'S' ? true : false})
+            temp.push({...DAYS[2], checked: response.data.wednesday === 'S' ? true : false})
+            temp.push({...DAYS[3], checked: response.data.thursday === 'S' ? true : false})
+            temp.push({...DAYS[4], checked: response.data.friday === 'S' ? true : false})
+            temp.push({...DAYS[5], checked: response.data.saturday === 'S' ? true : false})
+            temp.push({...DAYS[6], checked: response.data.sunday === 'S' ? true : false})
+
+            setLesson({...response.data, days: temp})
+
+        } catch (error) {
+            console.log('Screen: Lessons\nFunction: handleGetLesson\nerror:', error)
+        } 
+    }
+
+    useEffect(() => {
+        handleGetLesson()
+    },[])
 
     return (
         <Container>
@@ -39,117 +115,35 @@ export function UpdateLesson(){
             />
 
             <Header>
-                <Title>Português</Title>
+                <Title>{lesson?.lesson}</Title>
             </Header>
 
             <Details>           
                 <Observation>
-                    Observação:{'\n'}
-                    Realizar estudo diário
+                    {lesson.obs}
                 </Observation>
                 
                 <SelectDays>
-                    <Week>
-                        <BouncyCheckbox
-                            size={24}
-                            text='Segunda-feira'
-                            textStyle={{ 
-                                color: theme.colors.white, 
-                                fontFamily: theme.fonts.regular,
-                                textDecorationLine: 'none'
-                            }}
-                            style={{ paddingVertical: 10 }}
-                            iconStyle={{ borderRadius: 3 }}
-                            fillColor={theme.colors.pink}
-                            unfillColor={theme.colors.black}
-                        />
-                        
-                        <BouncyCheckbox
-                            size={24}
-                            text='Terça-feira'
-                            textStyle={{ 
-                                color: theme.colors.white, 
-                                fontFamily: theme.fonts.regular,
-                                textDecorationLine: 'none'
-                            }}
-                            style={{ paddingVertical: 10 }}
-                            iconStyle={{ borderRadius: 3 }}
-                            fillColor={theme.colors.pink}
-                            unfillColor={theme.colors.black}
-                        />
-
-                        <BouncyCheckbox
-                            size={24}
-                            text='Quarta-feira'
-                            textStyle={{ 
-                                color: theme.colors.white, 
-                                fontFamily: theme.fonts.regular,
-                                textDecorationLine: 'none'
-                            }}
-                            style={{ paddingVertical: 10 }}
-                            iconStyle={{ borderRadius: 3 }}
-                            fillColor={theme.colors.pink}
-                            unfillColor={theme.colors.black}
-                        />
-
-                        <BouncyCheckbox
-                            size={24}
-                            text='Quinta-feira'
-                            textStyle={{ 
-                                color: theme.colors.white, 
-                                fontFamily: theme.fonts.regular,
-                                textDecorationLine: 'none'
-                            }}
-                            style={{ paddingVertical: 10 }}
-                            iconStyle={{ borderRadius: 3 }}
-                            fillColor={theme.colors.pink}
-                            unfillColor={theme.colors.black}
-                        />
-                    </Week>
-
-                    <Weekend>
-                        <BouncyCheckbox
-                            size={24}
-                            text='Sexta-feira'
-                            textStyle={{ 
-                                color: theme.colors.white, 
-                                fontFamily: theme.fonts.regular,
-                                textDecorationLine: 'none'
-                            }}
-                            style={{ paddingVertical: 10 }}
-                            iconStyle={{ borderRadius: 3 }}
-                            fillColor={theme.colors.pink}
-                            unfillColor={theme.colors.black}
-                        />
-
-                        <BouncyCheckbox
-                            size={24}
-                            text='Sábado'
-                            textStyle={{ 
-                                color: theme.colors.white, 
-                                fontFamily: theme.fonts.regular,
-                                textDecorationLine: 'none'
-                            }}
-                            style={{ paddingVertical: 10 }}
-                            iconStyle={{ borderRadius: 3 }}
-                            fillColor={theme.colors.pink}
-                            unfillColor={theme.colors.black}
-                        />
-
-                        <BouncyCheckbox
-                            size={24}
-                            text='Domingo'
-                            textStyle={{ 
-                                color: theme.colors.white, 
-                                fontFamily: theme.fonts.regular,
-                                textDecorationLine: 'none'
-                            }}
-                            style={{ paddingVertical: 10 }}
-                            iconStyle={{ borderRadius: 3 }}
-                            fillColor={theme.colors.pink}
-                            unfillColor={theme.colors.black}
-                        />
-                    </Weekend>
+                    {
+                        lesson.days?.map((day, index) => 
+                            <BouncyCheckbox
+                                key={day.id}
+                                size={24}
+                                text={day.name}
+                                textStyle={{ 
+                                    color: theme.colors.white, 
+                                    fontFamily: theme.fonts.regular,
+                                    textDecorationLine: 'none'
+                                }}
+                                style={{ paddingVertical: 10 }}
+                                iconStyle={{ borderRadius: 3 }}
+                                fillColor={theme.colors.pink}
+                                unfillColor={theme.colors.black}
+                                disableBuiltInState
+                                isChecked={day.checked}
+                            />
+                        )
+                    }
                 </SelectDays>
             </Details>
 

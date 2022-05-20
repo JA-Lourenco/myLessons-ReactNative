@@ -37,18 +37,9 @@ export const Observation = styled.Text`
 `
 
 export const SelectDays = styled.View`
-    margin-top: 35px;
+    margin-top: 20px;
     padding: 0 30px 30px;
-    flex-direction: row;
     justify-content: space-between;
-`
-
-export const Week = styled.View`
-
-`
-
-export const Weekend = styled.View`
-
 `
 
 export const ButtonArea = styled.View`
