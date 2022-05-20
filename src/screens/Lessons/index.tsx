@@ -78,17 +78,17 @@ export function Lessons(){
         } 
 
     }
-
+    
+    useEffect(() => {
+        handleGetLessons()
+    },[])
+    
     // ALTERNATIVA PARA A PROP RENDERITEM DA FLATLIST
     // const renderItem: ListRenderItem<LessonDTO> = ({ item }) => {
     //     return (
     //         <LessonCard { ...item} />
     //     )
     // }
-
-    useEffect(() => {
-        handleGetLessons()
-    },[])
 
     return (
         <Container>

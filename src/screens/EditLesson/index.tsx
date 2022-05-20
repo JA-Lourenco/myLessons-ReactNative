@@ -16,8 +16,7 @@ import { useTheme } from 'styled-components';
 import BouncyCheckbox from 'react-native-bouncy-checkbox';
 import * as Yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
-import uuid from 'react-native-uuid';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 import {
     Container,
@@ -36,7 +35,11 @@ export interface SelectedDaysProps {
 }
 
 interface NavigationProps {
-    navigate: (screen: string) => void
+    push: (screen: string) => void
+}
+
+interface Params {
+    id: LessonDTO
 }
 
 const schema = Yup.object().shape({
@@ -82,12 +85,14 @@ const DAYS = [
     }
 ]
 
-export function NewLesson(){
+export function EditLesson(){
     const [days, setDays] = useState<SelectedDaysProps[]>(DAYS)
 
     const theme = useTheme()
 
     const navigation = useNavigation<NavigationProps>()
+    const route = useRoute()
+    const { id } = route.params as Params
 
     const {
         control,
@@ -97,10 +102,9 @@ export function NewLesson(){
         resolver: yupResolver(schema)
     })
 
-    async function handleSubmitLesson(form: Partial<LessonDTO>) {
+    async function handleSubmitEditedLesson(form: Partial<LessonDTO>) {
         try {
-            const data = {
-                id: uuid.v4(),
+            await api.put(`/Lessons/${id}`, {
                 lesson: form.lesson,
                 obs: form.obs,
                 monday: days[0].checked ? 'S' : 'N',
@@ -110,14 +114,13 @@ export function NewLesson(){
                 friday: days[4].checked ? 'S' : 'N',
                 saturday: days[5].checked ? 'S' : 'N',
                 sunday: days[6].checked ? 'S' : 'N'
-            }
-            
-            await api.post('/Lessons', data)
-            Alert.alert('Matéria adicionada com sucesso!')
-            navigation.navigate('Matérias')
+            })
+            Alert.alert('Matéria editada com sucesso!')
+            navigation.push('Lessons')
+            setDays([])
 
         } catch (error) {
-            console.log('Screen: NewLesson\nFunction: handleSubmitLesson\nerror:', error)
+            console.log('Screen: EditLesson\nFunction: handleSubmitEditedLesson\nerror:', error)
         } 
     }
 
@@ -131,7 +134,7 @@ export function NewLesson(){
                 />
 
                 <Header>
-                    <Title>Adicionar Matéria</Title>
+                    <Title>Editar Matéria</Title>
                 </Header>
 
                 <Form>
@@ -187,9 +190,9 @@ export function NewLesson(){
 
                     <ButtonArea>
                         <Button 
-                            title='Adicionar' 
+                            title='Editar' 
                             color={theme.colors.pink} 
-                            onPress={handleSubmit(handleSubmitLesson)} 
+                            onPress={handleSubmit(handleSubmitEditedLesson)} 
                         />
                     </ButtonArea>
                 </Form>

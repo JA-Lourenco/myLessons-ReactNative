@@ -71,6 +71,7 @@ interface Params {
 
 interface NavigationProps {
     push: (screen: string) => void
+    navigate: (screen: string, id: object) => void
 }
 
 export function UpdateLesson(){
@@ -116,6 +117,10 @@ export function UpdateLesson(){
         } catch (error) {
             console.log('Screen: UpdateLessons\nFunction: handleDeleteLesson\nerror:', error)
         } 
+    }
+
+    function handleEditLesson() {
+        navigation.navigate('Edit', lesson)
     }
 
     useEffect(() => {
@@ -167,7 +172,7 @@ export function UpdateLesson(){
                 <Button 
                     title='Editar' 
                     color={theme.colors.pink} 
-                    onPress={() => {}} 
+                    onPress={handleEditLesson} 
                 />
 
                 <Button 

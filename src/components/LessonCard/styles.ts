@@ -27,7 +27,7 @@ export const Days = styled.Text`
     font-family: ${({ theme }) => theme.fonts.regular};
     font-size: ${RFValue(14)}px;
     margin-top: 5px;
-    width: 85%;
+    width: 300px;
 `
 
 export const Observation = styled.Text`

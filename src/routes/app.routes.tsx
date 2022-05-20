@@ -3,6 +3,7 @@ import React from 'react'
 import { Lessons } from '../screens/Lessons'
 import { NewLesson } from '../screens/NewLesson'
 import { UpdateLesson } from '../screens/UpdateLesson'
+import { EditLesson } from '../screens/EditLesson'
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
@@ -11,7 +12,6 @@ import { useTheme } from 'styled-components'
 import { Platform } from 'react-native'
 import { RFValue } from 'react-native-responsive-fontsize'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
-import { NavigationContainer } from '@react-navigation/native';
 
 const Stack = createNativeStackNavigator()
 const Tab = createBottomTabNavigator()
@@ -26,9 +26,15 @@ function StackRoutes() {
                 name='Lessons'
                 component={Lessons}
             />
+
             <Stack.Screen 
                 name='Update'
                 component={UpdateLesson}
+            />
+
+            <Stack.Screen 
+                name='Edit'
+                component={EditLesson}
             />
         </Stack.Navigator>
     )
