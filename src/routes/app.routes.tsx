@@ -4,6 +4,7 @@ import { Lessons } from '../screens/Lessons'
 import { NewLesson } from '../screens/NewLesson'
 import { UpdateLesson } from '../screens/UpdateLesson'
 import { EditLesson } from '../screens/EditLesson'
+import { Splash } from '../screens/Splash'
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
@@ -20,8 +21,12 @@ function StackRoutes() {
     return (
         <Stack.Navigator
             screenOptions={{ headerShown: false }}
-            initialRouteName='Lessons'
         >
+            <Stack.Screen 
+                name='Splash'
+                component={Splash}
+            />
+
             <Stack.Screen 
                 name='Lessons'
                 component={Lessons}
