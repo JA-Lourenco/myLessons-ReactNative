@@ -26,6 +26,7 @@ import {
     Header,
     Title,
     Form,
+    FormContent,
     Inputs,
     SelectDays,
     ButtonArea        
@@ -93,55 +94,59 @@ export function NewLesson(){
                 </Header>
 
                 <Form>
-                    <Inputs>
-                        <InputForm
-                            name='lesson'
-                            control={control}
-                            placeholder='Nome da Matéria' 
-                            placeholderTextColor={theme.colors.gray} 
-                            maxLength={100}
-                            error={errors.lesson && errors.lesson.message}
-                        />
+                    <FormContent
+                        showsVerticalScrollIndicator={false}
+                    >
+                        <Inputs>
+                            <InputForm
+                                name='lesson'
+                                control={control}
+                                placeholder='Nome da Matéria' 
+                                placeholderTextColor={theme.colors.gray} 
+                                maxLength={100}
+                                error={errors.lesson && errors.lesson.message}
+                            />
 
-                        <InputForm 
-                            name='obs'
-                            control={control}
-                            placeholder='Observação' 
-                            placeholderTextColor={theme.colors.gray} 
-                            multiline={true}
-                            numberOfLines={3}
-                            maxLength={400}
-                            error={errors.obs && errors.obs.message}
-                        />
-                    </Inputs>
+                            <InputForm 
+                                name='obs'
+                                control={control}
+                                placeholder='Observação' 
+                                placeholderTextColor={theme.colors.gray} 
+                                multiline={true}
+                                numberOfLines={3}
+                                maxLength={400}
+                                error={errors.obs && errors.obs.message}
+                            />
+                        </Inputs>
 
-                    <SelectDays>
-                            {
-                                days.map((day, index) => 
-                                    <BouncyCheckbox
-                                        key={day.id}
-                                        size={24}
-                                        text={day.name}
-                                        textStyle={{ 
-                                            color: theme.colors.white, 
-                                            fontFamily: theme.fonts.regular,
-                                            textDecorationLine: 'none'
-                                        }}
-                                        style={{ width: 200, paddingVertical: 10 }}
-                                        iconStyle={{ borderRadius: 3 }}
-                                        fillColor={theme.colors.pink}
-                                        unfillColor={theme.colors.black}
-                                        disableBuiltInState
-                                        onPress={() => {
-                                            let temp = [...days]
-                                            temp[index].checked = !temp[index].checked
-                                            setDays(temp)
-                                        }}
-                                        isChecked={day.checked}
-                                    />
-                                )
-                            }
-                    </SelectDays>
+                        <SelectDays>
+                                {
+                                    days.map((day, index) => 
+                                        <BouncyCheckbox
+                                            key={day.id}
+                                            size={24}
+                                            text={day.name}
+                                            textStyle={{ 
+                                                color: theme.colors.white, 
+                                                fontFamily: theme.fonts.regular,
+                                                textDecorationLine: 'none'
+                                            }}
+                                            style={{ width: 200, paddingVertical: 10 }}
+                                            iconStyle={{ borderRadius: 3 }}
+                                            fillColor={theme.colors.pink}
+                                            unfillColor={theme.colors.black}
+                                            disableBuiltInState
+                                            onPress={() => {
+                                                let temp = [...days]
+                                                temp[index].checked = !temp[index].checked
+                                                setDays(temp)
+                                            }}
+                                            isChecked={day.checked}
+                                        />
+                                    )
+                                }
+                        </SelectDays>
+                    </FormContent>
 
                     <ButtonArea>
                         <Button 

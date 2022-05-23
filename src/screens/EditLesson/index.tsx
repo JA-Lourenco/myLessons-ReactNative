@@ -25,6 +25,7 @@ import {
     Header,
     Title,
     Form,
+    FormContent,
     Inputs,
     SelectDays,
     ButtonArea        
@@ -96,29 +97,32 @@ export function EditLesson(){
                 </Header>
 
                 <Form>
-                    <Inputs>
-                        <InputForm
-                            name='lesson'
-                            control={control}
-                            placeholder='Nome da Matéria' 
-                            placeholderTextColor={theme.colors.gray} 
-                            maxLength={100}
-                            error={errors.lesson && errors.lesson.message}
-                        />
+                    <FormContent
+                        showsVerticalScrollIndicator={false}
+                    >
+                        <Inputs>
+                            <InputForm
+                                name='lesson'
+                                control={control}
+                                placeholder='Nome da Matéria' 
+                                placeholderTextColor={theme.colors.gray} 
+                                maxLength={100}
+                                error={errors.lesson && errors.lesson.message}
+                            />
 
-                        <InputForm 
-                            name='obs'
-                            control={control}
-                            placeholder='Observação' 
-                            placeholderTextColor={theme.colors.gray} 
-                            multiline={true}
-                            numberOfLines={3}
-                            maxLength={400}
-                            error={errors.obs && errors.obs.message}
-                        />
-                    </Inputs>
+                            <InputForm 
+                                name='obs'
+                                control={control}
+                                placeholder='Observação' 
+                                placeholderTextColor={theme.colors.gray} 
+                                multiline={true}
+                                numberOfLines={3}
+                                maxLength={400}
+                                error={errors.obs && errors.obs.message}
+                            />
+                        </Inputs>
 
-                    <SelectDays>
+                        <SelectDays>
                             {
                                 days.map((day, index) => 
                                     <BouncyCheckbox
@@ -144,7 +148,8 @@ export function EditLesson(){
                                     />
                                 )
                             }
-                    </SelectDays>
+                        </SelectDays>
+                    </FormContent>
 
                     <ButtonArea>
                         <Button 

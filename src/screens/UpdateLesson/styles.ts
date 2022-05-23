@@ -23,7 +23,7 @@ export const Title = styled.Text`
     font-size: ${RFValue(26)}px;
 `
 
-export const Details = styled.View`
+export const Details = styled.ScrollView`
     border-bottom-width: 1px;
     border-bottom-color: ${({ theme }) => theme.colors.lightGray};
 `
@@ -46,7 +46,7 @@ export const ButtonArea = styled.View`
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
-    margin: 30px;
+    margin: 15px 0 30px;
 `
 
 export const ModalContainer = styled.View`

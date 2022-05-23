@@ -102,7 +102,9 @@ export function UpdateLesson(){
                 <Title>{lesson?.lesson}</Title>
             </Header>
 
-            <Details>           
+            <Details
+                showsVerticalScrollIndicator={false}
+            >           
                 <Observation>
                     {lesson.obs}
                 </Observation>

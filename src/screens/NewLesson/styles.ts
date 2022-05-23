@@ -27,6 +27,11 @@ export const Form = styled.View`
     flex: 1;
 `
 
+export const FormContent = styled.ScrollView`
+    border-bottom-width: 1px;
+    border-bottom-color: ${({ theme }) => theme.colors.lightGray};
+`
+
 export const Inputs = styled.View`
     flex-direction: column;
     justify-content: center;
@@ -38,12 +43,10 @@ export const SelectDays = styled.View`
     margin-top: 10px;
     padding: 0 30px 10px;
     justify-content: space-between;
-    border-bottom-width: 1px;
-    border-bottom-color: ${({ theme }) => theme.colors.lightGray};
 `
 
 export const ButtonArea = styled.View`
     justify-content: flex-end;
     align-items: center;
-    margin: 10px 0;
+    margin: 15px 0 30px;
 `
