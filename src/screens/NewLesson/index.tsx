@@ -5,6 +5,8 @@ import { InputForm } from '../../components/Form/InputForm';
 
 import api from '../../services/api';
 import { LessonDTO } from '../../dtos/LessonDTO'
+import { SelectedDaysProps } from '../../dtos/LessonDTO'
+import { DAYS } from '../../dtos/DAYSDTO';
 
 import { StatusBar, 
     TouchableWithoutFeedback, 
@@ -29,12 +31,6 @@ import {
     ButtonArea        
 } from './styles';
 
-export interface SelectedDaysProps {
-    id: number
-    name: string
-    checked: boolean
-}
-
 interface NavigationProps {
     navigate: (screen: string) => void
 }
@@ -43,44 +39,6 @@ const schema = Yup.object().shape({
     lesson: Yup.string().required('Preencha o Nome da Matéria!'),
     obs: Yup.string().required('Preencha a Observação!')
 })
-
-const DAYS = [
-    {
-        id: 0,
-        name: 'Segunda-feira',
-        checked: false
-    },
-    {
-        id: 1,
-        name: 'Terça-feira',
-        checked: false
-    },
-    {
-        id: 2,
-        name: 'Quarta-feira',
-        checked: false
-    },
-    {
-        id: 3,
-        name: 'Quinta-feira',
-        checked: false
-    },
-    {
-        id: 4,
-        name: 'Sexta-feira',
-        checked: false
-    },
-    {
-        id: 5,
-        name: 'Sábado',
-        checked: false
-    },
-    {
-        id: 6,
-        name: 'Domingo',
-        checked: false
-    }
-]
 
 export function NewLesson(){
     const [days, setDays] = useState<SelectedDaysProps[]>(DAYS)

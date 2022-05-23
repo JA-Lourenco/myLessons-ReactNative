@@ -1,5 +1,3 @@
-import { SelectedDaysProps } from "../screens/NewLesson"
-
 export interface LessonDTO {
     id: string
     lesson: string
@@ -12,4 +10,10 @@ export interface LessonDTO {
     saturday: string
     sunday: string
     days: SelectedDaysProps[]
+}
+
+export interface SelectedDaysProps {
+    id: number
+    name: string
+    checked: boolean
 }

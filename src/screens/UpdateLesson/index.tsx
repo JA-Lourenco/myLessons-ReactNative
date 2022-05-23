@@ -3,8 +3,9 @@ import React, { useEffect, useState } from 'react';
 import { Button } from '../../components/Button';
 
 import api from '../../services/api';
-
 import { LessonDTO } from '../../dtos/LessonDTO';
+import { DAYS } from '../../dtos/DAYSDTO';
+
 import { StatusBar, Alert } from 'react-native';
 import Modal from "react-native-modal";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
@@ -27,44 +28,6 @@ import {
     ModalQuestion,
     ModalButtonArea
 } from './styles';
-
-const DAYS = [
-    {
-        id: 0,
-        name: 'Segunda-feira',
-        checked: false
-    },
-    {
-        id: 1,
-        name: 'Terça-feira',
-        checked: false
-    },
-    {
-        id: 2,
-        name: 'Quarta-feira',
-        checked: false
-    },
-    {
-        id: 3,
-        name: 'Quinta-feira',
-        checked: false
-    },
-    {
-        id: 4,
-        name: 'Sexta-feira',
-        checked: false
-    },
-    {
-        id: 5,
-        name: 'Sábado',
-        checked: false
-    },
-    {
-        id: 6,
-        name: 'Domingo',
-        checked: false
-    }
-]
 interface Params {
     id: string
 }

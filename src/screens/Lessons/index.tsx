@@ -5,6 +5,7 @@ import { LessonCard } from '../../components/LessonCard';
 
 import api from '../../services/api'
 import { LessonDTO } from '../../dtos/LessonDTO';
+import { DAYS } from '../../dtos/DAYSDTO';
 
 import {
     Container,
@@ -13,44 +14,6 @@ import {
     TotalLessons,
     LessonsList
 } from './styles';
-
-const DAYS = [
-    {
-        id: 0,
-        name: 'Segunda',
-        checked: false
-    },
-    {
-        id: 1,
-        name: 'Terça',
-        checked: false
-    },
-    {
-        id: 2,
-        name: 'Quarta',
-        checked: false
-    },
-    {
-        id: 3,
-        name: 'Quinta',
-        checked: false
-    },
-    {
-        id: 4,
-        name: 'Sexta',
-        checked: false
-    },
-    {
-        id: 5,
-        name: 'Sábado',
-        checked: false
-    },
-    {
-        id: 6,
-        name: 'Domingo',
-        checked: false
-    }
-]
 
 export function Lessons(){
     const [lesson, setLesson] = useState<LessonDTO[]>([])
