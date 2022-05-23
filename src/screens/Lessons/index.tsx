@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { ListRenderItem, StatusBar } from 'react-native';
+import { Alert, ListRenderItem, StatusBar } from 'react-native';
 import { LessonCard } from '../../components/LessonCard';
 
 import api from '../../services/api'
@@ -14,9 +14,11 @@ import {
     TotalLessons,
     LessonsList
 } from './styles';
+import { Load } from '../../components/Load';
 
 export function Lessons(){
     const [lesson, setLesson] = useState<LessonDTO[]>([])
+    const [loading, setLoading] = useState(true)
 
     async function handleGetLessons() {
         try {
@@ -37,8 +39,11 @@ export function Lessons(){
             setLesson(tempArray)
 
         } catch (error) {
+            Alert.alert('Não foi possível carregar os registros!')
             console.log('Screen: Lessons\nFunction: handleGetLessons\nerror:', error)
-        } 
+        } finally {
+            setLoading(false)
+        }
 
     }
     
@@ -67,12 +72,15 @@ export function Lessons(){
                 <TotalLessons>Total de {lesson.length} matérias</TotalLessons>
             </Header>
 
-            <LessonsList
-                data={lesson}
-                keyExtractor={(item: any) => item.id}
-                renderItem={({item}: any) => <LessonCard { ...item} />}
-                showsVerticalScrollIndicator={false}
-            />
+            {
+                loading ? <Load /> :
+                <LessonsList
+                    data={lesson}
+                    keyExtractor={(item: any) => item.id}
+                    renderItem={({item}: any) => <LessonCard { ...item} />}
+                    showsVerticalScrollIndicator={false}
+                />
+            }
         </Container>
     )
 }

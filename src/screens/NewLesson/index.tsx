@@ -43,6 +43,7 @@ const schema = Yup.object().shape({
 
 export function NewLesson(){
     const [days, setDays] = useState<SelectedDaysProps[]>(DAYS)
+    const [loading, setLoading] = useState(false)
 
     const theme = useTheme()
 
@@ -57,6 +58,8 @@ export function NewLesson(){
     })
 
     async function handleSubmitLesson(form: Partial<LessonDTO>) {
+        setLoading(true)
+
         try {
             const data = {
                 id: uuid.v4(),
@@ -76,6 +79,8 @@ export function NewLesson(){
             navigation.navigate('Matérias')
 
         } catch (error) {
+            setLoading(false)
+            Alert.alert('Não foi possível adicionar o registro!')
             console.log('Screen: NewLesson\nFunction: handleSubmitLesson\nerror:', error)
         } 
     }
@@ -120,31 +125,31 @@ export function NewLesson(){
                         </Inputs>
 
                         <SelectDays>
-                                {
-                                    days.map((day, index) => 
-                                        <BouncyCheckbox
-                                            key={day.id}
-                                            size={24}
-                                            text={day.name}
-                                            textStyle={{ 
-                                                color: theme.colors.white, 
-                                                fontFamily: theme.fonts.regular,
-                                                textDecorationLine: 'none'
-                                            }}
-                                            style={{ width: 200, paddingVertical: 10 }}
-                                            iconStyle={{ borderRadius: 3 }}
-                                            fillColor={theme.colors.pink}
-                                            unfillColor={theme.colors.black}
-                                            disableBuiltInState
-                                            onPress={() => {
-                                                let temp = [...days]
-                                                temp[index].checked = !temp[index].checked
-                                                setDays(temp)
-                                            }}
-                                            isChecked={day.checked}
-                                        />
-                                    )
-                                }
+                            {
+                                days.map((day, index) => 
+                                    <BouncyCheckbox
+                                        key={day.id}
+                                        size={24}
+                                        text={day.name}
+                                        textStyle={{ 
+                                            color: theme.colors.white, 
+                                            fontFamily: theme.fonts.regular,
+                                            textDecorationLine: 'none'
+                                        }}
+                                        style={{ width: 200, paddingVertical: 10 }}
+                                        iconStyle={{ borderRadius: 3 }}
+                                        fillColor={theme.colors.pink}
+                                        unfillColor={theme.colors.black}
+                                        disableBuiltInState
+                                        onPress={() => {
+                                            let temp = [...days]
+                                            temp[index].checked = !temp[index].checked
+                                            setDays(temp)
+                                        }}
+                                        isChecked={day.checked}
+                                    />
+                                )
+                            }
                         </SelectDays>
                     </FormContent>
 
@@ -152,7 +157,9 @@ export function NewLesson(){
                         <Button 
                             title='Adicionar' 
                             color={theme.colors.pink} 
-                            onPress={handleSubmit(handleSubmitLesson)} 
+                            onPress={handleSubmit(handleSubmitLesson)}
+                            disabled={loading}
+                            loading={loading} 
                         />
                     </ButtonArea>
                 </Form>

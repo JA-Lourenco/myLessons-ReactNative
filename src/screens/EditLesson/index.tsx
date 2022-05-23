@@ -46,6 +46,7 @@ const schema = Yup.object().shape({
 
 export function EditLesson(){
     const [days, setDays] = useState<SelectedDaysProps[]>(DAYS)
+    const [loading, setLoading] = useState(false)
 
     const theme = useTheme()
 
@@ -62,6 +63,8 @@ export function EditLesson(){
     })
 
     async function handleSubmitEditedLesson(form: Partial<LessonDTO>) {
+        setLoading(true)
+
         try {
             await api.put(`/Lessons/${id}`, {
                 lesson: form.lesson,
@@ -79,6 +82,8 @@ export function EditLesson(){
             setDays([])
 
         } catch (error) {
+            setLoading(false)
+            Alert.alert('Não foi possível editar o registro!')
             console.log('Screen: EditLesson\nFunction: handleSubmitEditedLesson\nerror:', error)
         } 
     }
@@ -156,6 +161,8 @@ export function EditLesson(){
                             title='Editar' 
                             color={theme.colors.pink} 
                             onPress={handleSubmit(handleSubmitEditedLesson)} 
+                            disabled={loading}
+                            loading={loading}
                         />
                     </ButtonArea>
                 </Form>

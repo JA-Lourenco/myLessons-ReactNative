@@ -28,6 +28,7 @@ import {
     ModalQuestion,
     ModalButtonArea
 } from './styles';
+import { Load } from '../../components/Load';
 interface Params {
     id: string
 }
@@ -38,8 +39,9 @@ interface NavigationProps {
 }
 
 export function UpdateLesson(){
-    const [modalIsOpen, setModalIsOpen] = useState(false)
     const [lesson, setLesson] = useState<LessonDTO>({} as LessonDTO)
+    const [modalIsOpen, setModalIsOpen] = useState(false)
+    const [loading, setLoading] = useState(false)
 
     const theme = useTheme()
 
@@ -51,6 +53,8 @@ export function UpdateLesson(){
     console.log(id)
 
     async function handleGetLesson() {
+        setLoading(true)
+
         try {
             const response = await api.get(`/Lessons/${id}`)
             
@@ -67,10 +71,14 @@ export function UpdateLesson(){
 
         } catch (error) {
             console.log('Screen: UpdateLessons\nFunction: handleGetLesson\nerror:', error)
-        } 
+        } finally {
+            setLoading(false)
+        }
     }
 
     async function handleDeleteLesson() {
+        setLoading(true)
+
         try {
             await api.delete(`/Lessons/${id}`).then(() => setModalIsOpen(false))
             
@@ -78,8 +86,11 @@ export function UpdateLesson(){
             navigation.push('Lessons')
 
         } catch (error) {
+            Alert.alert('Não foi possível realizar remoção do registro!')
             console.log('Screen: UpdateLessons\nFunction: handleDeleteLesson\nerror:', error)
-        } 
+        } finally {
+            setLoading(false)
+        }
     }
 
     function handleEditLesson() {
@@ -102,36 +113,41 @@ export function UpdateLesson(){
                 <Title>{lesson?.lesson}</Title>
             </Header>
 
-            <Details
-                showsVerticalScrollIndicator={false}
-            >           
-                <Observation>
-                    {lesson.obs}
-                </Observation>
-                
-                <SelectDays>
-                    {
-                        lesson.days?.map((day) => 
-                            <BouncyCheckbox
-                                key={day.id}
-                                size={24}
-                                text={day.name}
-                                textStyle={{ 
-                                    color: theme.colors.white, 
-                                    fontFamily: theme.fonts.regular,
-                                    textDecorationLine: 'none'
-                                }}
-                                style={{ paddingVertical: 10 }}
-                                iconStyle={{ borderRadius: 3 }}
-                                fillColor={theme.colors.pink}
-                                unfillColor={theme.colors.black}
-                                disableBuiltInState
-                                isChecked={day.checked}
-                            />
-                        )
-                    }
-                </SelectDays>
-            </Details>
+            {
+                loading ? <Load /> :
+
+                <Details
+                    showsVerticalScrollIndicator={false}
+                >           
+                    <Observation>
+                        {lesson.obs}
+                    </Observation>
+                    
+                    <SelectDays>
+                        {
+                            lesson.days?.map((day) => 
+                                <BouncyCheckbox
+                                    key={day.id}
+                                    size={24}
+                                    text={day.name}
+                                    textStyle={{ 
+                                        color: theme.colors.white, 
+                                        fontFamily: theme.fonts.regular,
+                                        textDecorationLine: 'none'
+                                    }}
+                                    style={{ paddingVertical: 10 }}
+                                    iconStyle={{ borderRadius: 3 }}
+                                    fillColor={theme.colors.pink}
+                                    unfillColor={theme.colors.black}
+                                    disableBuiltInState
+                                    isChecked={day.checked}
+                                />
+                            )
+                        }
+                    </SelectDays>
+                </Details>
+            }
+
 
             <ButtonArea>
                 <Button 
@@ -177,6 +193,8 @@ export function UpdateLesson(){
                             title='Confirmar' 
                             color={theme.colors.purple} 
                             onPress={handleDeleteLesson} 
+                            disabled={loading}
+                            loading={loading} 
                         />
                     </ModalButtonArea>
                 </ModalContainer>
